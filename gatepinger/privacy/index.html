@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; base-uri 'none'; form-action 'none'">
+<title>GatePinger privacy policy</title>
+<link rel="stylesheet" href="../enroll/enroll.css">
+</head>
+<body>
+<main>
+  <h1>GatePinger privacy policy</h1>
+  <p class="muted">Last updated: 21 October 2026</p>
+
+  <p>GatePinger is an Android app that keeps your phone's public IP address allow-listed on a
+    <strong>Gatekeeper server that you or someone you trust runs</strong>, so you can keep reaching
+    self-hosted services when your phone changes networks. The developer of GatePinger runs no
+    server for the app and receives no data from it.</p>
+
+  <h2>What the app sends, and to whom</h2>
+  <p>GatePinger talks only to the Gatekeeper server you enroll with (the address in your enrollment
+    link or that you type in), and, if configured, to one access-check address on that same
+    deployment. It sends:</p>
+  <ul>
+    <li><strong>An invite code</strong>, once, when you enroll.</li>
+    <li><strong>A device token</strong>: a random value generated on your phone at enrollment, which
+      identifies this phone to that server on every request.</li>
+    <li><strong>Your phone's public IP address</strong>, which any server sees when it is contacted.
+      Keeping it allow-listed is the purpose of the app; the server records it with an expiry time.</li>
+  </ul>
+  <p>Like any app that connects to a server, requests also carry standard technical information such
+    as the app's user agent. The access check sends no token or personal data.</p>
+  <p>What the server does with this information is decided by whoever operates it. GatePinger does not
+    send anything to the developer, to analytics or advertising services, or to anyone else.</p>
+
+  <h2>What is stored on your phone</h2>
+  <p>The server address, the device token, the enrollment details the server returned (device ID,
+    user name, allowed apps) and the optional access-check address are stored in the app's encrypted
+    storage, which is never included in device backups. Recent status (last IP seen, grant expiry) is
+    stored in the app's private storage and may be included in your own Android backup.</p>
+
+  <h2>Permissions</h2>
+  <ul>
+    <li><strong>Internet / network state</strong>: to contact your server and notice network changes.</li>
+    <li><strong>Foreground service and notifications</strong>: a persistent notification shows that the
+      IP guard is running; you can stop it by unenrolling.</li>
+    <li><strong>Run at startup</strong>: to resume after a reboot.</li>
+    <li><strong>Battery optimization exemption (optional)</strong>: so updates aren't delayed for long
+      while the phone sleeps.</li>
+  </ul>
+  <p>GatePinger does not use location, contacts, the camera, the microphone or advertising IDs.</p>
+
+  <h2>Deleting your data</h2>
+  <p>Tap <em>Unenroll</em> in the app: it asks the server to disable this phone and remove its IP
+    addresses, then deletes everything the app stored. Uninstalling the app deletes its local data; in
+    that case ask the server's operator to remove the device.</p>
+
+  <h2>Children</h2>
+  <p>GatePinger is a technical tool for people who use a self-hosted server. It is not directed at
+    children.</p>
+
+  <h2>Changes and contact</h2>
+  <p>Changes to this policy are published on this page. Questions: open an issue at
+    <a href="https://github.com/idomp/gatepinger/issues">github.com/idomp/gatepinger</a>.</p>
+</main>
+</body>
+</html>
