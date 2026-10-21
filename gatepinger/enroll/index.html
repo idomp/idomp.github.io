@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="robots" content="noindex">
+<title>GatePinger enrollment</title>
+<link rel="stylesheet" href="enroll.css">
+</head>
+<body>
+<main>
+  <h1>GatePinger</h1>
+
+  <!-- Shown when the page was opened from an enrollment link (the app is not installed,
+       or this browser didn't hand the link to it). -->
+  <section id="invite" hidden>
+    <p class="lead">You were invited to connect this phone to
+      <strong id="inv-host"></strong>.</p>
+    <p class="muted">Full address: <code id="inv-server"></code></p>
+    <p id="noapp" class="err" hidden>GatePinger doesn't seem to be installed on this phone.</p>
+    <p><a id="open-app" class="btn primary" href="#">Open in GatePinger</a></p>
+    <p class="muted">The app shows the server and asks you to confirm before anything is sent.</p>
+    <h2>Don't have the app yet?</h2>
+    <p><a class="btn" href="https://github.com/idomp/gatepinger/releases/latest">Download GatePinger (GitHub)</a></p>
+    <p class="muted">After installing, come back to the message you received and tap the link again,
+      or copy the link below and paste it into the app's "Invite code or link" field.</p>
+    <p><button id="copy-invite" class="btn" type="button">Copy enrollment link</button>
+      <span id="copy-invite-done" class="ok" hidden>Copied</span></p>
+  </section>
+
+  <section id="bad" hidden>
+    <p class="lead">This enrollment link is incomplete or damaged.</p>
+    <p id="bad-why" class="muted"></p>
+    <p>Ask the person who sent it for a new link.</p>
+  </section>
+
+  <!-- Shown without a link: build one (everything stays in this browser). -->
+  <section id="builder" hidden>
+    <p class="lead">Create an enrollment link for a Gatekeeper invite.</p>
+    <p class="muted">Nothing you type leaves this page: it has no server side and makes no requests.</p>
+    <label>Gatekeeper server
+      <input id="b-server" type="url" placeholder="https://gatekeeper.example.com" autocomplete="off" spellcheck="false">
+    </label>
+    <label>Invite code
+      <input id="b-code" type="text" placeholder="ABC123XYZ789" autocomplete="off" spellcheck="false">
+    </label>
+    <label>Access check URL <span class="muted">(optional)</span>
+      <input id="b-probe" type="url" placeholder="https://app.example.com/ping" autocomplete="off" spellcheck="false">
+    </label>
+    <p id="b-error" class="err" hidden></p>
+    <div id="b-out" hidden>
+      <h2>App link</h2>
+      <p class="muted">Opens the app directly. Some chat apps don't make it tappable; the person can then
+        copy it into the app.</p>
+      <textarea id="b-scheme" readonly rows="3"></textarea>
+      <p><button class="btn copy" data-target="b-scheme" type="button">Copy</button></p>
+      <h2>Web link</h2>
+      <p class="muted">Tappable everywhere. Opens the app if installed, otherwise this page with install help.</p>
+      <textarea id="b-https" readonly rows="3"></textarea>
+      <p><button class="btn copy" data-target="b-https" type="button">Copy</button></p>
+    </div>
+  </section>
+
+  <footer class="muted">GatePinger keeps a phone's public IP allow-listed on a self-hosted
+    Gatekeeper server, so remote access keeps working when the phone changes networks.</footer>
+</main>
+<script src="enroll.js"></script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+# Jekyll skips dot-folders by default; Android App Links need /.well-known/assetlinks.json.
+include: [".well-known"]
