@@ -27,7 +27,8 @@
     var u;
     try { u = new URL(s); } catch (e) { return null; }
     if (u.protocol !== 'https:' || !u.hostname || u.username || u.password || u.hash) return null;
-    return s;
+    // The serialized form (spaces escaped, IDN as punycode) is what the app's parser accepts.
+    return u.href;
   }
 
   function query(p) {
@@ -85,11 +86,11 @@
     } else {
       open.href = schemeLink(p);
     }
+    $('plain-link').href = schemeLink(p);
     $('copy-invite').addEventListener('click', function () { copy(httpsLink(p), $('copy-invite-done')); });
     if (/[?&]noapp=1/.test(location.search)) $('noapp').hidden = false;
     $('invite').hidden = false;
-    // Keep the invite out of this tab's visible URL (it stays usable via the buttons).
-    try { history.replaceState(null, '', location.pathname); } catch (e) {}
+    // The fragment stays: it never reaches the server, and a refresh keeps the invite.
   }
 
   function setupBuilder() {
