@@ -5,7 +5,7 @@
 
   var PACKAGE = 'io.github.idomp.gatepinger';
   var SCHEME = 'gatekeeper';
-  var PAGE = 'https://idomp.github.io/gatepinger/enroll';
+  var PAGE = 'https://idomp.github.io/gatepinger/enroll/';  // trailing slash: no redirect hop
   var CODE_RE = /^[A-Za-z0-9_-]{1,64}$/;
 
   function $(id) { return document.getElementById(id); }
@@ -66,10 +66,20 @@
     return { server: server, code: out.code, probe: probe };
   }
 
-  function copy(text, done) {
+  // Copy, or (no clipboard API / permission denied) show the text selected for a manual copy.
+  function copy(text, done, fallback) {
     var ok = function () { if (done) { done.hidden = false; setTimeout(function () { done.hidden = true; }, 2000); } };
+    var manual = function () {
+      if (!fallback) return;
+      fallback.value = text;
+      fallback.hidden = false;
+      fallback.focus();
+      fallback.select();
+    };
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(ok, function () {});
+      navigator.clipboard.writeText(text).then(ok, manual);
+    } else {
+      manual();
     }
   }
 
@@ -87,7 +97,7 @@
       open.href = schemeLink(p);
     }
     $('plain-link').href = schemeLink(p);
-    $('copy-invite').addEventListener('click', function () { copy(httpsLink(p), $('copy-invite-done')); });
+    $('copy-invite').addEventListener('click', function () { copy(httpsLink(p), $('copy-invite-done'), $('invite-link')); });
     if (/[?&]noapp=1/.test(location.search)) $('noapp').hidden = false;
     $('invite').hidden = false;
     // The fragment stays: it never reaches the server, and a refresh keeps the invite.
@@ -118,7 +128,7 @@
       buttons[i].addEventListener('click', function (ev) {
         var t = $(ev.target.getAttribute('data-target'));
         t.select();
-        copy(t.value, null);
+        copy(t.value, null, null);
       });
     }
     $('builder').hidden = false;

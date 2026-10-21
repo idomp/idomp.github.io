@@ -12,6 +12,8 @@
 <body>
 <main>
   <h1>GatePinger</h1>
+  <noscript><p class="err">This page needs JavaScript to read the enrollment link. You can also copy
+    the link you received and paste it into the GatePinger app.</p></noscript>
 
   <!-- Shown when the page was opened from an enrollment link (the app is not installed,
        or this browser didn't hand the link to it). -->
@@ -29,6 +31,7 @@
       or copy the link below and paste it into the app's "Invite code or link" field.</p>
     <p><button id="copy-invite" class="btn" type="button">Copy enrollment link</button>
       <span id="copy-invite-done" class="ok" hidden>Copied</span></p>
+    <textarea id="invite-link" readonly rows="3" hidden></textarea>
   </section>
 
   <section id="bad" hidden>
