@@ -3,10 +3,20 @@
     "relation": ["delegate_permission/common.handle_all_urls"],
     "target": {
       "namespace": "android_app",
-      "package_name": "io.github.idomp.gatepinger",
+      "package_name": "app.gatepinger",
       "sha256_cert_fingerprints": [
-        "09:BA:B0:80:26:64:7D:AD:79:E5:A6:48:EE:A4:11:FF:D0:CB:E5:C2:C6:84:61:F1:8E:67:8D:C9:8F:13:B9:B9",
+        "F0:A7:6F:87:A6:79:25:83:A4:59:FF:B8:D7:7B:9C:38:9D:8F:F0:57:28:08:15:FC:84:00:15:16:36:6C:DE:BA",
         "9D:5C:D9:58:E2:FC:15:02:E2:A3:86:DE:76:95:5B:6D:66:96:2F:B0:3E:03:25:FC:4F:01:21:DA:C1:42:9A:6F"
+      ]
+    }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "app.gatepinger.debug",
+      "sha256_cert_fingerprints": [
+        "CC:94:6B:E1:E7:04:27:5D:B7:4A:53:C4:60:5C:B8:6A:2D:A1:26:1B:4D:B6:28:9D:9B:01:DC:05:47:24:6B:25"
       ]
     }
   },

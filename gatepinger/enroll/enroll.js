@@ -3,7 +3,7 @@
 (function () {
   'use strict';
 
-  var PACKAGE = 'io.github.idomp.gatepinger';
+  var PACKAGE = 'app.gatepinger';
   var SCHEME = 'gatekeeper';
   var PAGE = 'https://idomp.github.io/gatepinger/enroll/';  // trailing slash: no redirect hop
   var CODE_RE = /^[A-Za-z0-9_-]{1,64}$/;
